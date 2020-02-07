@@ -109,8 +109,22 @@ function transpose(data){
     }
     return newData;
 }
-
-export function newElement(data){
+// function equals(preData, data){
+//     let status = false;
+//     for(let i=0; i < preData.length; i++){
+//         for(let j=0; j < preData.length; j++){
+//             if(preData[i][j]!==data[i][j]){
+//                 status=true;
+//                 break;
+//             }
+//         }
+//         if(status){
+//             break;
+//         }
+//     }
+//     return status;
+// }
+export function newElement(preData, data){
     let newData = [...data];
     let emptyArray = [];
     for(let i=0; i<newData.length ; i++){
@@ -120,8 +134,10 @@ export function newElement(data){
             }
         }
     }
-    let index = Math.floor(Math.random()*emptyArray.length);
-    let [i,j] = emptyArray[index].split('')
-    newData[i][j] = Math.floor(Math.random()*2) ? 4 : 2;
+    if(emptyArray.length>0){
+        let index = Math.floor(Math.random()*emptyArray.length);
+        let [i,j] = emptyArray[index].split('')
+        newData[i][j] = Math.floor(Math.random()*2) ? 4 : 2;
+    }
     return newData;
 }

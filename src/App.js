@@ -3,9 +3,11 @@ import "./styles.css";
 import { connect } from 'react-redux';
 import {color} from './color';
 const App = (props) => {
+
   function handleMouseUp(event) {
     handleSwipe(event.clientX, event.clientY);
   }
+
   function handleMouseDown(event) {
     props.dispatch({
       type: 'COR',
@@ -33,16 +35,16 @@ const App = (props) => {
       type: 'DATA'
     });
   }
+
   function handleTouchStart(event){
-    console.log('handleTouchStart', event.targetTouches[0], event.clientX, event.clientY);
     handleMouseDown(event.targetTouches[0]);
 
   }
+
   function handleTouchEnd(event){
-    // console.log('handleTouchEnd', event, event.target, event.type, event.currentTarget, event.changedTouches[0], event.targetTouches);
     handleMouseUp(event.changedTouches[0])
   }
-  console.log('state', props);
+
   return (
     <>
     <div className="App" onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>

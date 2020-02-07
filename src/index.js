@@ -15,16 +15,15 @@ const customLogger = store => next => action =>{
 }
 
 function swipe(data, swipe){
-    console.log('swipe function', swipe);
 switch(swipe){
     case 'left':
-        return newElement(formatterLeft(data));
+        return formatterLeft(data);
     case 'right':
-        return newElement(formatterRight(data));
+        return formatterRight(data);
     case 'up':
-        return newElement(formatterUp(data));
+        return formatterUp(data);
     case 'down':
-        return newElement(formatterDown(data));
+        return formatterDown(data);
     default:
         return data;
 }
@@ -42,7 +41,7 @@ function reducer(state=initialState, action){
         case 'DATA':
         return {
             ...state,
-            data: swipe(state.data, state.swipe),
+            data: newElement(state.data, swipe(state.data, state.swipe)),
         }
         case 'SWIPE':
         return {
